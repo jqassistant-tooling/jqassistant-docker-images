@@ -1,6 +1,6 @@
 FROM jupyter/scipy-notebook:latest
 
-RUN pip install neo4j py2neo ipython-cypher jupyter_contrib_nbextensions jupyter_dashboards pygal plotly holoviews bokeh
+RUN pip install neo4j py2neo ipython-cypher jupyter_contrib_nbextensions jupyter_dashboards pygal plotly holoviews
 RUN jupyter contrib nbextension install --sys-prefix
 
 RUN wget --directory-prefix=vis/lib https://d3js.org/d3.v4.min.js

@@ -1,36 +1,11 @@
-# jQAssistant Jupyter Notebook
+# jQAssistant Docker Images
 
-## Overview
-This Docker image provides Jupyter notebooks to be used with jQAssistant for Software Analytics.
+This repository provides Docker images around [jQAssistant](https://jqassistant.org).
 
-It is based on `jupyter/scipy-notebook` and includes the following pre-installed packages:
+## Available Images
 
-* neo4j 
-* py2neo
-* ipython-cypher 
-* jupyter_contrib_nbextensions 
-* jupyter_dashboards 
-* pygal
-* plotly
-* holoviews
-* bokeh
+- [Jupyter Notebook](jupyter-notebook/README.md)
 
-Furthermore it provides a template notebook with an example setup for connecting to a running Neo4j database.
+## Feedback
 
-## Usage
-
-Spin up a Docker container using the following command: 
-
-```
-docker run -p8888:8888 jqassistant/jupyter-notebook
-```
-
-The work directory can be mounted to a host directory (e.g. /local/work):
-
-```
-docker run -p8888:8888 -v /local/work:/home/jovyan/work jqassistant/jupyter-notebook
-```
-
-## Issues
-
-The 
+For any feature requests or bugs feel free to raise an issue [here](https://github.com/jqassistant-contrib/jqassistant-docker-images/issues). 

@@ -9,6 +9,6 @@ RUN wget --directory-prefix=vis/lib https://kozea.github.com/pygal.js/javascript
 RUN wget --directory-prefix=vis/lib https://kozea.github.io/pygal.js/2.0.x/pygal-tooltips.min.js
 
 COPY vis vis
-COPY jqassistant.ipynb .
+COPY examples/vis.ipynb examples/
 
 EXPOSE 8888/tcp

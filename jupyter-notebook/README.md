@@ -14,6 +14,7 @@ and additionally includes the following pre-installed packages:
 * pygal
 * plotly
 * holoviews
+* import-ipynb
 
 Furthermore it provides a template notebook with an example setup for connecting to a running Neo4j database.
 

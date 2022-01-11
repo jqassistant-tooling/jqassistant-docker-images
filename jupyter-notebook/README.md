@@ -15,6 +15,7 @@ and additionally includes the following pre-installed packages:
 * plotly
 * holoviews
 * import-ipynb
+* hide_code
 
 Furthermore it provides a template notebook with an example setup for connecting to a running Neo4j database.
 

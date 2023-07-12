@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.jqassistant.tooling.docker</groupId>
+        <artifactId>jqassistant-docker-images</artifactId>
+        <version>2.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>cli</artifactId>
+    <packaging>pom</packaging>
+
+    <name>jQAssistant CLI Docker Image</name>
+
+    <properties>
+        <distribution.dir>${project.build.directory}/distribution</distribution.dir>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.buschmais.jqassistant.cli</groupId>
+                                    <artifactId>jqassistant-commandline-distribution</artifactId>
+                                    <classifier>bin</classifier>
+                                    <type>zip</type>
+                                    <version>${com.buschmais.jqassistant.version}</version>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.build.directory}/distribution</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jkube</groupId>
+                <artifactId>kubernetes-maven-plugin</artifactId>
+                <configuration>
+                    <images>
+                        <image>
+                            <name>jqassistant/cli:%l</name>
+                            <build>
+                                <dockerFile>Dockerfile</dockerFile>
+                                <filter>@</filter>
+                                <assembly>
+                                    <layers>
+                                        <layer>
+                                            <id>distribution</id>
+                                            <fileSets>
+                                                <fileSet>
+                                                    <directory>${project.build.directory}/distribution</directory>
+                                                </fileSet>
+                                            </fileSets>
+                                        </layer>
+                                    </layers>
+                                </assembly>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

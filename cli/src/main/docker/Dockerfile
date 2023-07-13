@@ -9,7 +9,7 @@ RUN mkdir -p /repository; \
     chown -R jqa:jqa /workspace;
 
 COPY --chown=jqa:jqa maven/.jqassistant.yml /opt/jqa
-COPY --chown=jqa:jqa maven/distribution/jqassistant-commandline-distribution-@com.buschmais.jqassistant.version@/ /opt/jqa/
+COPY --chown=jqa:jqa maven/distribution/jqassistant-commandline-distribution-${com.buschmais.jqassistant.version}/ /opt/jqa/
 
 RUN chmod u+x /opt/jqa/bin/jqassistant.sh
 

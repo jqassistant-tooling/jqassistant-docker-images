@@ -38,7 +38,7 @@
                                     <version>${com.buschmais.jqassistant.version}</version>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>${project.build.directory}/distribution</outputDirectory>
+                            <outputDirectory>${distribution.dir}</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
@@ -52,14 +52,13 @@
                             <name>jqassistant/cli:%l</name>
                             <build>
                                 <dockerFile>Dockerfile</dockerFile>
-                                <filter>@</filter>
                                 <assembly>
                                     <layers>
                                         <layer>
                                             <id>distribution</id>
                                             <fileSets>
                                                 <fileSet>
-                                                    <directory>${project.build.directory}/distribution</directory>
+                                                    <directory>${distribution.dir}</directory>
                                                 </fileSet>
                                             </fileSets>
                                         </layer>

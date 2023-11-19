@@ -1,54 +1,22 @@
 # jQAssistant Jupyter Notebook
 
 ## Overview
-This Docker image provides Jupyter notebooks to be used with jQAssistant for Software Analytics.
-
-It is based on [jupyter/scipy-notebook](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-scipy-notebook)
-and additionally includes the following pre-installed packages:
-
-* neo4j 
-* py2neo 
-* pandas 
-* matplotlib 
-* pygal 
-* plotly 
-* holoviews 
-* bokeh 
-* import-ipynb 
-* hide_code
-
-Furthermore, it provides a template notebook with an example setup for connecting to a running Neo4j database.
+This Docker image provides the jQAssistant Command Line utility.
 
 ## Usage
 
-Spin up a Docker container using the following command providing the Neo4j URL including credentials as environment variable:
+For scanning the current directory and running analysis run the following command:
 
+.Linux
 ```
-docker run -p8888:8888 -e NEO4J_URL=http://<neo4j_user>:<neo4j_password>@<neo4j_host>:7474 jqassistant/jupyter-notebook
-```
-
-The placeholder `<neo4j_host>` must be replaced by a hostname which can be reached from the docker container,
-e.g. `http://neo4j:7474`, accordingly `<neo4j_user>` and `<neo4j_password>` must represent valid credentials. 
-
-This environment variable can be used in notebooks for connecting to Neo4j:
-
-```
-neo4j_url=%env NEO4J_URL
-graph = Graph(neo4j_url + '/db/data')
+docker run --rm -v ${pwd}:/workspace jqassistant/cli scan analyze -f .
 ```
 
-**HINT** The Neo4j user and password must be omitted from the URL if authentication has been disabled for the database,
-e.g. if the embedded Neo4j server from jQAssistant is started:
-
+.Windows
 ```
-docker run -p8888:8888 -e NEO4J_URL=http://<neo4j_host>:7474 jqassistant/jupyter-notebook
+docker run --rm -v %cd%:/workspace jqassistant/cli scan analyze -f .
 ```
 
-The work directory can be mounted to a host directory (e.g. /local/work):
-
-```
-docker run -p8888:8888 -e NEO4J_URL=http://<neo4j_host>:7474 -v /local/work:/home/jovyan/work jqassistant/jupyter-notebook
-```
-
-For other configuration options (e.g. password authentication) refer to the [Jupyter Docker Stacks documentation](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/common.html).
-
+In both examples the volume `/workspace`  is mounted to the current directory. 
+It is used by the jQAssistant command line utility as working directory. 
+A configuration file `.jqassistant.yml` located here would be evaluated for execution. 

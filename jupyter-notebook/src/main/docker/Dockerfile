@@ -6,8 +6,8 @@ RUN jupyter lab build
 RUN wget --directory-prefix=vis/lib https://d3js.org/d3.v4.min.js
 RUN wget --directory-prefix=vis/lib https://cdn.jsdelivr.net/npm/lodash/lodash.min.js
 
-COPY vis vis
-COPY examples/example-visualizations.ipynb examples/
+COPY maven/vis vis
+COPY maven/examples/example-visualizations.ipynb examples/
 
 EXPOSE 8888/tcp
 

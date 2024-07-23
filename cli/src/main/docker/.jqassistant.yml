@@ -1,0 +1,8 @@
+jqassistant:
+  store:
+    embedded:
+      listen-address: 0.0.0.0
+  repositories:
+    local: /repository
+  server:
+    daemon: true

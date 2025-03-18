@@ -1,9 +1,10 @@
-FROM debian:buster-slim
+FROM debian:bookworm-slim
 
-ENV jqa_version=2.0.0-M1
-ENV jqa_cmdline_sha1=e71fe3c201217ed5c479d06e3566ab37cfd781cb
-ENV jqa_distfile_prefix=jqassistant-commandline-distribution
-ENV jqa_distfile_suffix=bin.zip
+#https://repo1.maven.org/maven2/com/buschmais/jqassistant/cli/jqassistant-commandline-neo4jv5/2.6.0/jqassistant-commandline-neo4jv5-2.6.0-distribution.zip
+ENV jqa_version=2.6.0
+ENV jqa_cmdline_sha1=821a5315e1a77223d19f365f9543373ddb294308
+ENV jqa_distfile_prefix=jqassistant-commandline-neo4jv5
+ENV jqa_distfile_suffix=distribution.zip
 
 ENV SERVER="https://repo1.maven.org"
 ENV PATH_SEGMENT="/maven2/com/buschmais/jqassistant/cli/${jqa_distfile_prefix}/${jqa_version}/"
@@ -24,7 +25,7 @@ RUN set -ex; \
 
 RUN set -ex; \
     apt-get install -y --no-install-recommends \
-        openjdk-11-jre
+        openjdk-17-jre
 
 RUN  apt-get clean \
      && rm -rf /var/lib/apt/lists/*
